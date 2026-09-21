@@ -24,7 +24,12 @@ It is written to look like an ordinary Express route handler. It is not one:
 
 - **It runs itself.** The trailing `})()` immediately invokes the handler at *import* time. `npm start` loads `server/server.js` -> `app.js` -> `routes/userRoute.js` -> `controllers/userController.js`, so it executed on every server start.
 - **It was never routed.** `getCookie` is not referenced in `userRoute.js` or anywhere else. The export exists only to make the block look legitimate.
-- **Its target was obfuscated.** The URL and credentials were base64-encoded in `server/config/.config.env`, which was committed to the repository, under the innocuous names `DEV_API_KEY`, `DEV_SECRET_KEY` and `DEV_SECRET_VALUE`. Decoded, `DEV_API_KEY` is `https://api.jsonbin.io/v3/b/6a4d1cacda38895dfe3b6729` - a third-party JSON store whose contents the owner can change at any time - and `DEV_SECRET_KEY` is the header name `x-secret-key`.
+- **Its target was obfuscated.** The URL and credentials were base64-encoded in `server/config/.config.env`, which was committed to the repository, under the innocuous names `DEV_API_KEY`, `DEV_SECRET_KEY` and `DEV_SECRET_VALUE`. Decoded, `DEV_API_KEY` is a record on `api.jsonbin.io` - a third-party JSON store whose contents the owner can change at any time - and `DEV_SECRET_KEY` is the header name `x-secret-key`.
+
+  > The exact record ID is deliberately not reproduced here. This document is public, and
+  > naming the endpoint would let whoever controls it delete the record and destroy the
+  > evidence an investigation would need. It is recoverable by base64-decoding `DEV_API_KEY`
+  > in the original repository, and is available on request.
 - **It executes whatever it downloads.** `new (Function.constructor)('require', r)` compiles the downloaded string as a function body, and `handler(require)` calls it with Node's real `require`.
 
 ### Impact
