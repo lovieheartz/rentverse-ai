@@ -1,0 +1,13 @@
+/node_modules
+package-lock.json
+
+# Production build output
+/build
+
+# Local secrets - never commit. Copy config.env.example instead.
+server/config/.config.env
+.env
+.env.local
+
+# Generated evaluation reports
+server/eval/reports/

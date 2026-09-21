@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#006eff" />
+    <meta
+      name="description"
+      content="RentVerse - fractional, tokenised investment in individual rental properties."
+    />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>RentVerse</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      The service worker is registered from src/index.js, in production builds only.
+      It used to be registered by an inline script here, unguarded and before page load,
+      which threw wherever service workers are unavailable and - worse - put a caching
+      worker in front of the API during development.
+    -->
+  </body>
+</html>
